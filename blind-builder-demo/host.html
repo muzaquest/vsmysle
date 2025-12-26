@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Blind Builder — Host</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <a href="./index.html" style="text-decoration:none"><div>Blind Builder</div></a>
+          <span class="badge">Host</span>
+        </div>
+        <div class="row">
+          <span class="badge">Room: <b id="host_room">—</b></span>
+          <span class="badge">Фаза: <b id="host_phase">—</b></span>
+          <span class="badge">Раунд: <b id="host_round">—</b></span>
+        </div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h2>Панель ведущего</h2>
+          <p class="muted">
+            Вы управляете игрой: подключение, роли, запуск раунда, таймер, сравнение и рефлексия.
+          </p>
+
+          <div class="sep"></div>
+
+          <div class="row spread">
+            <div>
+              <div class="muted">Ссылка для игроков</div>
+              <a id="host_link_players" href="./player.html">player.html</a>
+            </div>
+            <div class="row">
+              <button id="btn_assign_architect" class="primary">Assign Architect</button>
+              <button id="btn_start_round" class="ok">Start Round</button>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="row spread">
+            <div>
+              <div class="muted">Таймер</div>
+              <div style="font-size:28px;font-weight:900"><span id="host_timer">—</span></div>
+            </div>
+            <div>
+              <div class="muted">Образец</div>
+              <div style="font-weight:800"><span id="host_target_name">—</span></div>
+            </div>
+            <div>
+              <div class="muted">Ограничения</div>
+              <div id="host_constraints" class="chips"></div>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="row">
+            <button id="btn_back_lobby">Lobby</button>
+            <button id="btn_show_reveal" class="warn">Reveal</button>
+            <button id="btn_show_reflect">Reflect</button>
+            <button id="btn_reset_round">Reset submissions</button>
+            <button id="btn_next_round" class="primary">Next round</button>
+          </div>
+
+          <div class="sep"></div>
+
+          <details class="collapsible" open>
+            <summary>Инструкция ведущему (как проводить)</summary>
+            <div class="hint">
+              <b>Вход (1 мин):</b> “Сейчас проверим, как мы даём/получаем инструкции. Это не про ‘кто тупой’, а про то, как мы синхронизируемся.”
+              <div class="sep"></div>
+              <b>Роли:</b> один Архитектор видит образец, остальные собирают. Общение — в Zoom/Telegram голосом.
+              <div class="sep"></div>
+              <b>Раунд 1 (3 мин):</b> без ограничений. Архитектор учится давать инструкции.
+              <br/>
+              <b>Раунд 2 (2:30):</b> ограничение “без координат” + запрет слов (показывается сверху).
+              <div class="sep"></div>
+              <b>Сравнение (1–2 мин):</b> покажите образец и лучший результат. Спросите: “что помогало / что мешало?”
+              <div class="sep"></div>
+              <b>Рефлексия (5 мин):</b> соберите 3–5 правил команды (пример: “говорим цель, затем контекст, затем ожидаемое действие”).
+            </div>
+          </details>
+        </div>
+
+        <div class="card">
+          <h3>Игроки</h3>
+          <div id="host_players"></div>
+
+          <div class="sep"></div>
+
+          <div id="panel_lobby">
+            <h3>Лобби</h3>
+            <p class="muted">
+              Подключите минимум 2 человека, назначьте Архитектора и нажмите <b>Start Round</b>.
+            </p>
+          </div>
+
+          <div id="panel_round" style="display:none">
+            <h3>Раунд идёт</h3>
+            <p class="muted">
+              Игроки собирают фигуру на своих экранах. Когда готовы — нажимают “Отправить результат”.
+              Вы можете перейти к <b>Reveal</b> вручную или дождаться окончания таймера.
+            </p>
+          </div>
+
+          <div id="panel_reveal" style="display:none">
+            <h3>Сравнение</h3>
+            <div id="host_best_score" class="muted"></div>
+            <div class="sep"></div>
+            <div class="two-boards">
+              <div>
+                <div class="board-title">Образец</div>
+                <div id="host_target_board"></div>
+              </div>
+              <div>
+                <div class="board-title">Лучший результат</div>
+                <div id="host_best_board"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="panel_reflect" style="display:none">
+            <h3>Рефлексия → правила команды</h3>
+            <p class="muted">Соберите 3–5 правил, которые заберёте в работу.</p>
+            <div class="row">
+              <input id="rule_input" placeholder="Например: сначала цель, потом контекст, потом действие" />
+              <button id="btn_add_rule" class="ok">Добавить</button>
+              <button id="btn_clear_rules" class="bad">Очистить</button>
+            </div>
+            <div class="sep"></div>
+            <ol id="host_rules_list"></ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+    <script>window.BB.hostMain();</script>
+  </body>
+</html>
+
