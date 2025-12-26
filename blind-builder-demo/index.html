@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Blind Builder — demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <div>Blind Builder</div>
+          <span class="badge">demo</span>
+        </div>
+        <span class="badge">1 игра • понятная механика • результат</span>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h2>Игра «Слепой сборщик»</h2>
+          <p class="muted">
+            Быстрая онлайн‑игра для команды про <b>ясность коммуникации</b>: один видит образец, остальные — нет.
+            Задача — собрать фигуру по инструкциям, а потом забрать из этого правила взаимодействия в работе.
+          </p>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="v">20–35 мин</div>
+              <div class="l">вместе с рефлексией</div>
+            </div>
+            <div class="kpi">
+              <div class="v">6–20</div>
+              <div class="l">участников</div>
+            </div>
+            <div class="kpi">
+              <div class="v">0 кринжа</div>
+              <div class="l">делаем по‑взрослому</div>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+          <div class="row">
+            <a href="./host.html"><button class="primary">Я ведущий (Host)</button></a>
+            <a href="./player.html"><button>Я участник (Player)</button></a>
+          </div>
+
+          <p class="footer-note">
+            Это прототип: синхронизация между вкладками через <code>BroadcastChannel</code>.
+            В “боевой” версии комнаты, состояние и результаты живут в базе, а вход делается по ссылке из Telegram.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Как проходит игра (коротко)</h3>
+          <div class="chips">
+            <span class="chip brand">1) Вход</span>
+            <span class="chip">2) Роли</span>
+            <span class="chip">3) Раунд 1</span>
+            <span class="chip">4) Ограничение</span>
+            <span class="chip">5) Раунд 2</span>
+            <span class="chip ok">6) Рефлексия</span>
+          </div>
+
+          <div class="sep"></div>
+
+          <details class="collapsible" open>
+            <summary>Что увидит ведущий</summary>
+            <div class="hint">
+              Панель управления комнатой, список игроков, назначение Архитектора, запуск раунда, таймер, экран сравнения и блок рефлексии с фиксацией “правил команды”.
+            </div>
+          </details>
+
+          <details class="collapsible">
+            <summary>Что увидит Архитектор</summary>
+            <div class="hint">
+              Образец фигуры (только он) + подсказки, как давать инструкции (без “угадайки”).
+            </div>
+          </details>
+
+          <details class="collapsible">
+            <summary>Что увидят Сборщики</summary>
+            <div class="hint">
+              Пустая сетка, палитра цветов/деталей, кнопка “Отправить результат”. Образца нет — только инструкции Архитектора (в голосе/чате).
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
