@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Blind Builder — Room</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <a href="/" style="text-decoration:none"><div>Blind Builder</div></a>
+          <span class="badge">Room</span>
+        </div>
+        <div class="row">
+          <span class="badge">Room: <b id="p_room_live">—</b></span>
+          <span class="badge">Фаза: <b id="p_phase">—</b></span>
+          <span class="badge">Раунд: <b id="p_round">—</b></span>
+          <span class="badge">Таймер: <b id="p_timer">—</b></span>
+        </div>
+      </div>
+
+      <div id="p_shell" class="grid cols-2" style="display:none">
+        <div class="card">
+          <h2>Подключение</h2>
+          <p class="muted">Комната: <b id="p_room">—</b></p>
+
+          <div id="p_join_panel">
+            <label class="muted">Ваше имя</label>
+            <input id="p_name" placeholder="Например: Дима" />
+            <div class="sep"></div>
+            <button id="p_btn_join" class="primary">Войти</button>
+          </div>
+
+          <div id="p_info_panel" style="display:none">
+            <div class="chips" id="p_role"></div>
+            <div class="sep"></div>
+
+            <div class="hint">
+              <b>Важно:</b> игра проходит голосом/в чате (Zoom/Telegram). Платформа показывает образец только Архитектору и даёт место для сборки.
+            </div>
+
+            <div class="sep"></div>
+
+            <details class="collapsible" open>
+              <summary>Правила раунда (что важно)</summary>
+              <div class="hint">
+                <ul id="p_constraints"></ul>
+                <div class="sep"></div>
+                <div id="p_hint" class="muted"></div>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Сборка</h3>
+          <div class="muted">Выбирайте цвет и кликайте по клеткам.</div>
+          <div class="sep"></div>
+
+          <div class="row spread">
+            <div>
+              <div class="muted">Палитра</div>
+              <div id="p_palette" class="palette"></div>
+              <div class="small">E = стереть</div>
+            </div>
+            <div class="row">
+              <button id="p_btn_clear">Очистить</button>
+              <button id="p_btn_submit" class="ok">Отправить результат</button>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div id="p_builder_view">
+            <div class="board-wrap">
+              <div id="p_board"></div>
+              <div id="p_submit_status" class="muted"></div>
+            </div>
+          </div>
+
+          <div id="p_architect_view" style="display:none">
+            <div class="two-boards">
+              <div>
+                <div class="board-title">Образец: <span id="p_target_name">—</span></div>
+                <div id="p_target_board"></div>
+                <div class="small">
+                  Совет: давайте инструкции как “цель → структура → детали”. Просите сборщиков перефразировать, прежде чем продолжать.
+                </div>
+              </div>
+              <div>
+                <div class="board-title">Ваш экран сборки (опционально)</div>
+                <div id="p_board_arch"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+          <div id="p_score_teaser" class="muted"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="/assets/client.js"></script>
+    <script>window.BBPlatform.roomPage();</script>
+  </body>
+</html>
+

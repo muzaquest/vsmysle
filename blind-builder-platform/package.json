@@ -1,0 +1,16 @@
+{
+  "name": "blind-builder-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Platform MVP with the Blind Builder team game (host + players) over WebSockets.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
+
