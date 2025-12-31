@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Blind Builder — Host</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <a href="/" style="text-decoration:none"><div>Blind Builder</div></a>
+          <span class="badge">Host</span>
+        </div>
+        <div class="row">
+          <span class="badge">Room: <b id="h_room">—</b></span>
+          <span class="badge">Фаза: <b id="h_phase">—</b></span>
+          <span class="badge">Раунд: <b id="h_round">—</b></span>
+          <span class="badge">Таймер: <b id="h_timer">—</b></span>
+        </div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h2>Запуск игры</h2>
+          <div id="h_create">
+            <p class="muted">
+              Введите имя ведущего и нажмите “Создать комнату”. Появится ссылка для участников.
+            </p>
+            <label class="muted">Имя ведущего</label>
+            <input id="h_name" placeholder="Например: Катя (ведущая)" />
+            <div class="sep"></div>
+            <button id="h_btn_create" class="primary">Создать комнату</button>
+          </div>
+
+          <div id="h_controls" style="display:none">
+            <div class="row spread">
+              <div>
+                <div class="muted">Ссылка для участников</div>
+                <div class="row">
+                  <a id="h_join_link" href="#" target="_blank"></a>
+                  <button id="h_copy_link">Скопировать</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <div class="row">
+              <button id="h_assign_arch" class="primary">Назначить архитектора</button>
+              <button id="h_start_round" class="ok">Старт раунда</button>
+              <button id="h_to_reveal" class="warn">Сравнение</button>
+              <button id="h_to_reflect">Рефлексия</button>
+              <button id="h_next_round" class="primary">След. раунд</button>
+            </div>
+
+            <div class="sep"></div>
+
+            <div class="row spread">
+              <div>
+                <div class="muted">Образец</div>
+                <div style="font-weight:800" id="h_target_name">—</div>
+              </div>
+              <div>
+                <div class="muted">Ограничения</div>
+                <div id="h_constraints" class="chips"></div>
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <details class="collapsible" open>
+              <summary>Инструкция ведущему (как проводить)</summary>
+              <div class="hint">
+                <b>Вход (1 мин):</b> “Сейчас проверим, как мы даём/получаем инструкции. Это не про ‘кто умный’, а про синхронизацию.”
+                <div class="sep"></div>
+                <b>Роли:</b> один Архитектор видит образец (у себя на экране), остальные собирают. Общение — голосом/чатом (Zoom/Telegram).
+                <div class="sep"></div>
+                <b>Раунд 1:</b> без ограничений. Ведущий следит, чтобы Архитектор давал структуру: “сначала общая форма, потом детали”.
+                <br/>
+                <b>Раунд 2:</b> включаются ограничения (покажутся сверху). Здесь чаще всего и случается “вау‑инсайт”.
+                <div class="sep"></div>
+                <b>Сравнение:</b> покажите образец и лучший результат. Спросите: “что помогало? что мешало? что бы вы изменили в работе?”
+                <div class="sep"></div>
+                <b>Рефлексия:</b> зафиксируйте 3–5 правил команды. Экспортируйте отчёт и отправьте в рабочий чат.
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Участники</h3>
+          <div id="h_players" class="muted">Пока пусто.</div>
+
+          <div class="sep"></div>
+
+          <div id="h_panel_reveal" style="display:none">
+            <h3>Сравнение</h3>
+            <div id="h_scoreline" class="muted"></div>
+            <div class="sep"></div>
+            <div class="two-boards">
+              <div>
+                <div class="board-title">Образец</div>
+                <div id="h_target_board"></div>
+              </div>
+              <div>
+                <div class="board-title">Лучший результат</div>
+                <div id="h_best_board"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="h_panel_reflect" style="display:none">
+            <h3>Рефлексия → правила команды</h3>
+            <p class="muted">Соберите 3–5 правил, которые заберёте в работу.</p>
+            <div class="row">
+              <input id="h_rule_input" placeholder="Например: сначала цель, потом контекст, потом действие" />
+              <button id="h_add_rule" class="ok">Добавить</button>
+              <button id="h_clear_rules" class="bad">Очистить</button>
+            </div>
+            <div class="sep"></div>
+            <ol id="h_rules_list"></ol>
+            <div class="sep"></div>
+            <div class="row">
+              <button id="h_export_md" class="primary">Экспорт отчёта (Markdown)</button>
+              <button id="h_copy_md">Скопировать отчёт</button>
+            </div>
+            <div class="hint" id="h_md_preview" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="/assets/client.js"></script>
+    <script>window.BBPlatform.hostPage();</script>
+  </body>
+</html>
+
